@@ -3,10 +3,13 @@ import time
 from pathlib import Path
 
 import cv2
+import numpy as np
 import torch
 
 from src.data_process import preprocess_transform
 from src.resnet import Classifire
+
+np.empty(0)
 
 
 def parse_args() -> argparse.Namespace:
@@ -54,7 +57,7 @@ if __name__ == "__main__":
             tensor = transform(frame).to(device)
             output = model(tensor.unsqueeze(0))
             pred = torch.argmax(output, dim=1).detach().cpu()
-            print(output, pred)
+            print(output.detach().cpu().tolist(), pred.item())
 
             if pred.item() == 1:
                 cv2.putText(
