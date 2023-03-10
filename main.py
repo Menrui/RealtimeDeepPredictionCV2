@@ -3,13 +3,10 @@ import time
 from pathlib import Path
 
 import cv2
-import numpy as np
 import torch
 
 from src.data_process import preprocess_transform
 from src.resnet import Classifire
-
-np.empty(0)
 
 
 def parse_args() -> argparse.Namespace:
